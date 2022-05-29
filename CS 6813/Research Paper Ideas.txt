@@ -1,0 +1,11 @@
+Hiding key generation through memory
+
+Using key generation through real life observations
+
+Using an emulator running dummy software to detect malicious attackers
+
+Anti-DDOS measures by using session+ID/cookies to redirect attackers
+
+Needs 3 academic references
+
+Crowdsourced DDoS botnets identifying databases

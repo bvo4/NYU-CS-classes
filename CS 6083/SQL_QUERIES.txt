@@ -1,0 +1,95 @@
+CREATE TABLE users (
+  uid INT NOT NULL auto_increment primary key,
+  username VARCHAR(20) unique NOT NULL,
+  password VARCHAR(30) NOT NULL,
+  profile VARCHAR(99),
+  status VARCHAR(15) NOT NULL,
+  city VARCHAR(25) NOT NULL,
+  state VARCHAR(2) NOT NULL,
+  country VARCHAR(2) NOT NULL
+  );
+CREATE TABLE answers (
+  aid INT NOT NULL primary key,
+  body VARCHAR(99) NOT NULL
+  );
+CREATE TABLE  questions (
+  qid INT NOT NULL primary key,
+   tid INT references topic(tid),
+  title VARCHAR(20) NOT NULL,
+  body VARCHAR(90) 
+  );
+CREATE TABLE topic (
+  tid INT NOT NULL primary key,
+  tname VARCHAR(50),
+  hierarchy INT NOT NULL);
+CREATE TABLE q_keyword (
+  qid INT NOT NULL references questions(qid),
+  keyword VARCHAR(45) NOT NULL
+);
+CREATE TABLE a_keyword (
+  aid INT NOT NULL references answers(aid),
+  keyword VARCHAR(45) NOT NULL
+);
+CREATE TABLE post_question (
+  qid INT references questions(qid),
+  uid INT references users(uid),
+  resolved BOOLEAN,
+  timeposted DATETIME NOT NULL
+  );
+CREATE TABLE post_answers (
+  uid INT references users(uid),
+  qid INT references questions(qid),
+  aid INT references answers(aid),
+  grade int not null,
+  weight int not null,
+  best boolean not null,
+  timeposted DATETIME NOT NULL
+  );
+INSERT INTO topic (tid, tname, hierarchy) VALUES (1, Computer Science, 1);
+INSERT INTO topic (`tid`, `tname`, `hierarchy`) VALUES ('2', 'Biology', '1');
+INSERT INTO topic (`tid`, `tname`, `hierarchy`) VALUES ('3', 'Mathmatics', '1');
+INSERT INTO topic (`tid`, `tname`, `hierarchy`) VALUES ('4', 'Business', '1');
+INSERT INTO topic (`tid`, `tname`, `hierarchy`) VALUES ('5', 'Off-topic', '3');
+INSERT INTO `users` (`uid`, `username`, `password`, `profile`, `status`) VALUES ('1', 'JV4', 'password', 'PLACEHOLDER PROFILE', 'BASIC');
+INSERT INTO `users` (`uid`, `username`, `password`, `profile`, `status`) VALUES ('2', 'Bobby2', 'password1', 'PLACEHOLDER PROFILE', 'BASIC');
+INSERT INTO `users` (`uid`, `username`, `password`, `profile`, `status`) VALUES ('3', 'Mike6', 'password2', 'PLACEHOLDER PROFILE', 'BASIC');
+INSERT INTO `users` (`uid`, `username`, `password`, `profile`, `status`) VALUES ('4', 'Janet1', 'password3', 'PLACEHOLDER PROFILE', 'BASIC');
+INSERT INTO `users` (`uid`, `username`, `password`, `profile`, `status`) VALUES ('5', 'Daryl9', 'password4', 'PLACEHOLDER PROFILE', 'BASIC');
+INSERT INTO `questions` (`qid`, `tid`, `title`, `body`) VALUES ('1', '3', 'HOW TO 1+1', 'HELP, HOW DO I COMMIT 1+1');
+INSERT INTO `questions` (`qid`, `tid`, `title`, `body`) VALUES ('2', '4', 'HOW TO PAY TAXES', 'Help, the government is inquiring about my car\'s extended warranty');
+INSERT INTO `questions` (`qid`, `tid`, `title`, `body`) VALUES ('3', '2', 'HOW TO GROW PLANT', 'My crops keep dying when I feed it coca-cola.  What am I doing wrong.');
+INSERT INTO `questions` (`qid`, `tid`, `title`, `body`) VALUES ('4', '5', 'HOW TO HACK', 'Hackerman keeps demanding ransom in bittycoin.  How do I pay.');
+INSERT INTO `questions` (`qid`, `tid`, `title`, `body`) VALUES ('5', '1', 'HOW DO I FLY', 'I try  flapping my arms, but it doesn\'t work.');
+INSERT INTO a_keyword(aid, keyword) VALUES (1, 'Hack');
+INSERT INTO a_keyword(aid, keyword) VALUES (2, 'FLY');
+INSERT INTO a_keyword(aid, keyword) VALUES (3, 'PLANT');
+INSERT INTO a_keyword(aid, keyword) VALUES (4, 'ADDITION');
+INSERT INTO a_keyword(aid, keyword) VALUES (5, 'TAXES');
+INSERT INTO q_keyword(qid, keyword) VALUES (1, 'BITCOIN');
+INSERT INTO q_keyword(qid, keyword) VALUES (2, 'FLY');
+INSERT INTO q_keyword(qid, keyword) VALUES (3, 'IRS');
+INSERT INTO q_keyword(qid, keyword) VALUES (4, 'CROPS');
+INSERT INTO q_keyword(qid, keyword) VALUES (5, 'IRS');
+INSERT INTO `answers` (`aid`, `body`) VALUES ('1', 'You send your bitcoins to this address:  [PLACEHOLDER]');
+INSERT INTO `answers` (`aid`, `body`) VALUES ('2', '1+1=2');
+INSERT INTO `answers` (`aid`, `body`) VALUES ('3', 'Plants cannot subsist off cola products.  Try something that isn\'t lethal.');
+INSERT INTO `answers` (`aid`, `body`) VALUES ('4', 'You cannot fly.  We are bipeds, not birds.');
+INSERT INTO `answers` (`aid`, `body`) VALUES ('5', 'That is not the IRS.  You are being scammed.  Do not respond to them.');
+INSERT INTO post_question (qid, uid, resolved, timeposted)
+VALUES (1, 3, FALSE, '2013-03-12 01:14:56');
+INSERT INTO post_question (qid, uid, resolved, timeposted)
+VALUES (2, 5, FALSE, '2017-02-07 05:31:30');
+INSERT INTO post_question (qid, uid, resolved, timeposted)
+VALUES (3, 4, FALSE, '2016-12-12 13:41:17');
+INSERT INTO post_question (qid, uid, resolved, timeposted)
+VALUES (4, 2, FALSE, '2011-11-30 18:56:23');
+INSERT INTO post_question (qid, uid, resolved, timeposted)
+VALUES (5, 3, FALSE, '2020-04-22 20:23:59');
+INSERT INTO post_answers(uid, qid, aid, grade, weight, best, timeposted)
+VALUES (1, 1, 4, 0, 1, FALSE, '2013-04-23 16:11:09');
+INSERT INTO post_answers(uid, qid, aid, grade, weight, best, timeposted)
+VALUES (2, 5, 4, 0, 1, FALSE, '2021-01-17 06:31:23');
+INSERT INTO post_answers(uid, qid, aid, grade, weight, best, timeposted)
+VALUES (2, 3, 3, 0, 1, FALSE, '2023-12-09 22:59:59');
+INSERT INTO post_answers(uid, qid, aid, grade, weight, best, timeposted)
+VALUES (5, 1, 4, 0, 1, FALSE, '2019-11-11 23:55:29');

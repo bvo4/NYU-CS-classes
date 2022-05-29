@@ -1,0 +1,42 @@
+alert tcp any any -> any any (content:"GET";sid:1000001; http_method; msg:"gif"; rev: 1; nocase; content:"gif")
+
+1. What's the type of distributed system that blockchain uses
+
+Peer-to-peer distributed system.
+
+2. Write about one consensus algorithm (proof of work, proof of stake, proof of reputation, proof of burn)
+
+Proof of Work-Miners must brute force cryptographic puzzles by hashing a nonce to get their blocks approved.
+The block with a valid nonce and the longest chain will be checked
+and approved by the other miners before being put into the network.
+
+Proof of Stake-Minters must choose which fork of a blockchain to validate.
+The block is determined by the majority consensus, and votes are determined by how many tokens a minter is willing to bet.
+Ethereum's stake is the cost of entry.
+
+Proof of Weight-Users have a set amount of tokens.
+These tokens determine the weight and probability of discovering the next block.
+
+Proof of Burn-A variant of Proof of Stake where stakeholders must burn their 
+tokens to be granted access to write blocks based on the coins they burnt.
+
+3. Write about one property of hash functions (Choose one of the 5 properties)
+
+Fast to compute
+One-Way
+Pseudorandom
+Deterministic
+Collision-Resistant
+
+4. Difference between symmetric and asymmetric cryptography
+
+Symmetric cryptography uses a shared key between two people.  That shared key is used to decode and encode a message.
+Asymmetric cryptography uses a public key and a private key.  The private key is used to encode a message.  
+The receiver must use a matching public key to decode the message.  The private key is never shared between the users.
+
+5. What are digital signatures
+
+An electronic signature created by a user's secret key and verified by the receiver's public key.
+Digital Signatures verify that only the user could have made that specific signature
+and that the people who see that signature can verify the integrity of that message and who signed it.
+  The blockchain will be put under the mercy of whoever has the majority rule.  As Bitcoin and other cryptocurrencies grow and expand further, the network and the number of nodes gets larger, leading to higher risk of faulty or malicious nodes.  As the network keeps growing, then it becomes increasingly more complicated on how to implement proper Fault Tolerance and determine the margin of error allowed for an exponentially growing network of good nodes and malicious nodes to reach consensus.

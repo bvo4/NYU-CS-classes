@@ -1,0 +1,24 @@
+# New File Operation
+# Clean up of existing file
+if "testfile.txt.a" in listfiles():
+ removefile("testfile.txt.a")
+if "testfile.txt.b" in listfiles():
+ removefile("testfile.txt.b")
+
+# Open File Function Call
+myfile=ABopenfile("testfile.txt",False)  #Create an AB file
+
+myfile.writeat("fdasfdasfdasfasdfasdfasfads", 2)
+myfile.readat(None, 44)
+
+#https://github.com/SeattleTestbed/docs/blob/7dd97fbf70aa06a2be2e6f1b5657c24054261d4c/Programming/RepyV2Tutorial.md
+
+try:
+ # Empty/New File should have contents 'SE' satisfying the requirement
+ assert('SE' == myfile.readat(None,0))
+ # Close the file:
+ myfile.close()
+except:
+ myfile.close()
+ # Error Handle or Failure Condition
+ log("Empty file is not handled properly!")
